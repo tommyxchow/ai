@@ -53,10 +53,13 @@ You are helping a developer implement a new feature. Follow a systematic approac
 **Actions**:
 1. Use the `agent` tool to spawn `@code-explorer` for deep codebase analysis (runs in isolated context)
 2. Explore from 2-3 different perspectives:
-   - Find features similar to the one being built
-   - Map architecture and abstractions
-   - Analyze current implementation of related areas
-   - Identify UI patterns, testing approaches, or extension points
+
+   **Example agent prompts**:
+   - "Find features similar to [feature] and trace through their implementation comprehensively"
+   - "Map the architecture and abstractions for [feature area], tracing through the code comprehensively"
+   - "Analyze the current implementation of [existing feature/area], tracing through the code comprehensively"
+   - "Identify UI patterns, testing approaches, or extension points relevant to [feature]"
+
 3. Each exploration should identify 5-10 key files to read
 4. After exploration, read all identified files to build deep understanding
 5. Present comprehensive summary of findings and patterns discovered

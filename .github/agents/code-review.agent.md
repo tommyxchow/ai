@@ -160,6 +160,21 @@ Consolidate findings from all perspectives into a single prioritized report.
 
 ---
 
+## False Positive Examples
+
+When reviewing, these are typically FALSE POSITIVES and should NOT be flagged:
+
+- Pre-existing issues (not introduced by the PR)
+- Something that looks like a bug but is not actually a bug
+- Pedantic nitpicks that a senior engineer wouldn't call out
+- Issues that a linter, typechecker, or compiler would catch (missing imports, type errors, formatting) - assume CI will catch these
+- General code quality issues (lack of test coverage, general security issues) unless explicitly required in AGENTS.md
+- Issues called out in AGENTS.md but explicitly silenced in code (lint ignore comments)
+- Changes in functionality that are likely intentional or directly related to the broader change
+- Real issues on lines the user did not modify in their PR
+
+---
+
 ## Confidence Scoring
 
 Rate each issue from 0-100:
@@ -209,21 +224,24 @@ When posting to GitHub via `gh pr comment`:
 
 Found N issues:
 
-1. <brief description of bug> (project guidelines say "<...>")
-<link to file and line with full sha1 + line range>
+1. <brief description of bug> (AGENTS.md says "<relevant guideline>")
 
-2. ...
+https://github.com/owner/repo/blob/FULL_SHA/path/to/file.ext#L10-L15
 
-Generated with GitHub Copilot
+2. <brief description of bug> (bug due to <file and code snippet>)
+
+https://github.com/owner/repo/blob/FULL_SHA/path/to/file.ext#L20-L25
+
+🤖 Generated with GitHub Copilot
 ```
 
 **If no issues found:**
 ```markdown
 ### Code review
 
-No issues found. Checked for bugs and project guidelines compliance.
+No issues found. Checked for bugs and AGENTS.md compliance.
 
-Generated with GitHub Copilot
+🤖 Generated with GitHub Copilot
 ```
 
 ---
