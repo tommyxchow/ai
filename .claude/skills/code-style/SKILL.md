@@ -1,6 +1,6 @@
 ---
 name: code-style
-description: Personal TypeScript/React code style preferences including naming conventions, formatting rules, and review severity labels. Use this skill when reviewing or writing code to ensure consistency.
+description: Personal TypeScript/React code style preferences including naming conventions, formatting rules, and review severity labels. Use this skill when: (1) Writing new TypeScript/React code, (2) Reviewing code or PRs, (3) Refactoring existing code, (4) Setting up linting/formatting configuration.
 ---
 
 # Code Style Guide
