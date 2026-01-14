@@ -23,6 +23,14 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - **types** - Analyze type design and invariants (if new types added)
    - **code** - General code review for project guidelines
    - **simplify** - Simplify code for clarity and maintainability
+   - **security** - Security vulnerability detection (OWASP, XSS, CSRF)
+   - **a11y** - Accessibility compliance (WCAG 2.2)
+   - **perf** - Performance analysis (re-renders, bundle size)
+   - **react** - React patterns and hooks best practices
+   - **db** - Database/Drizzle patterns and query optimization
+   - **nextjs-ssr** - Next.js App Router/SSR patterns
+   - **nextjs-csr** - Next.js CSR/SPA patterns
+   - **grid** - AG Grid patterns and performance
    - **all** - Run all applicable reviews (default)
 
 3. **Identify Changed Files**
@@ -33,11 +41,17 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 4. **Determine Applicable Reviews**
 
    Based on changes:
-   - **Always applicable**: code-reviewer (general quality)
+   - **Always applicable**: code-reviewer, security-auditor, performance-analyzer
+   - **If .tsx/.jsx changed**: react-patterns-reviewer
    - **If test files changed**: pr-test-analyzer
    - **If comments/docs added**: comment-analyzer
    - **If error handling changed**: silent-failure-hunter
    - **If types added/modified**: type-design-analyzer
+   - **If schema/db/tRPC files changed**: database-reviewer
+   - **If using App Router/SSR**: nextjs-ssr-reviewer
+   - **If using CSR patterns**: nextjs-csr-reviewer
+   - **If AG Grid components changed**: ag-grid-reviewer
+   - **If UI components changed**: accessibility-reviewer
    - **After passing review**: code-simplifier (polish and refine)
 
 5. **Launch Review Agents**
@@ -112,6 +126,57 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 
 ## Agent Descriptions:
 
+**code-reviewer**:
+- Checks AGENTS.md compliance
+- Detects bugs and issues
+- Reviews general code quality
+
+**security-auditor**:
+- OWASP Top 10 vulnerabilities
+- XSS, CSRF, injection detection
+- tRPC endpoint security
+
+**accessibility-reviewer**:
+- WCAG 2.2 compliance
+- Semantic HTML, ARIA
+- Keyboard navigation, focus management
+
+**performance-analyzer**:
+- Re-render detection
+- Bundle size analysis
+- AG Grid virtualization
+- Core Web Vitals impact
+
+**react-patterns-reviewer**:
+- useEffect misuse detection
+- State management patterns
+- tRPC/TanStack Query usage
+- Hooks best practices
+
+**database-reviewer**:
+- Drizzle ORM patterns
+- N+1 query detection
+- Migration safety
+- tRPC procedure optimization
+
+**nextjs-ssr-reviewer**:
+- Server/client boundaries
+- RSC patterns
+- Caching strategies
+- Server actions security
+
+**nextjs-csr-reviewer**:
+- Bundle optimization
+- Client routing patterns
+- SPA performance
+- Hydration efficiency
+
+**ag-grid-reviewer**:
+- SSRM implementation
+- Column definition patterns
+- Cell renderer performance
+- Grid virtualization
+
 **comment-analyzer**:
 - Verifies comment accuracy vs code
 - Identifies comment rot
@@ -131,11 +196,6 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 - Analyzes type encapsulation
 - Reviews invariant expression
 - Rates type design quality
-
-**code-reviewer**:
-- Checks AGENTS.md compliance
-- Detects bugs and issues
-- Reviews general code quality
 
 **code-simplifier**:
 - Simplifies complex code
