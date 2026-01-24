@@ -75,11 +75,11 @@ Auto-compact triggers at ~78%, so thresholds are calibrated accordingly:
 
 ## Null Handling
 
-Show `--` for any missing/null field. Default to `0` for lines added/removed if null.
+Show `--` for any missing/null field. Default to `0` for lines added/removed and context percentage if null.
 
 ## Platform Notes
 
-- **Windows**: Use PowerShell 7+ (`pwsh`) for ANSI color support
-- **macOS/Linux**: Use whatever is fastest and most reliable
+- **Windows**: Use PowerShell 7+ (`pwsh`) for ANSI color support. Use backtick syntax: `` `e[32m ``
+- **macOS/Linux**: Use bash. Define ANSI codes with `$'...'` syntax: `GREEN=$'\033[32m'`
 
 Install to `~/.claude/` and update `~/.claude/settings.json` with the statusLine configuration.
