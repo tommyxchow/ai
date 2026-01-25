@@ -55,25 +55,37 @@ Opus │ ↑15k ↓4k $1.23 │ 5m (2m) +156 -23 │ 42%
 - 4 decimal places if < $0.01 → `$0.0012`
 - 2 decimal places if ≥ $0.01 → `$0.12`
 
-**Lines changed**:
+**Lines changed**: Green for `+added`, Red for `-removed`
 
-- Green `\e[32m` for `+added`
-- Red `\e[31m` for `-removed`
+**Separators**: Dim box-drawing character `│` (U+2502)
 
-**Separators**: Dim `\e[90m` box-drawing character `│` (U+2502)
-
-**General styling**: Duration, tokens, and cost should be dim `\e[90m`
+**General styling**: Duration, tokens, and cost should be dim
 
 ## Context % Color Thresholds
 
 Auto-compact triggers at ~78%, so thresholds are calibrated accordingly:
 
-| Range  | Color  | ANSI           | Meaning                   |
-| ------ | ------ | -------------- | ------------------------- |
-| 0-49%  | Green  | `\e[32m`       | Plenty of room            |
-| 50-64% | Yellow | `\e[33m`       | Getting used              |
-| 65-74% | Orange | `\e[38;5;208m` | Approaching auto-compact  |
-| 75%+   | Red    | `\e[31m`       | Near auto-compact trigger |
+| Range  | Color  | Meaning                   |
+| ------ | ------ | ------------------------- |
+| 0-49%  | Green  | Plenty of room            |
+| 50-64% | Yellow | Getting used              |
+| 65-74% | Orange | Approaching auto-compact  |
+| 75%+   | Red    | Near auto-compact trigger |
+
+## ANSI Color Definitions (Bash)
+
+Define colors using `$'...'` syntax so escape sequences are interpreted:
+
+```bash
+DIM=$'\033[90m'
+GREEN=$'\033[32m'
+YELLOW=$'\033[33m'
+ORANGE=$'\033[38;5;208m'
+RED=$'\033[31m'
+RESET=$'\033[0m'
+```
+
+Always wrap colored output with `${COLOR}text${RESET}`.
 
 ## Null Handling
 
@@ -89,7 +101,7 @@ Only show `--` for non-numeric fields like model name if truly unavailable.
 
 ## Platform Notes
 
-- **Windows**: Use PowerShell 7+ (`pwsh`) for ANSI color support. Use backtick syntax: `` `e[32m ``
-- **macOS/Linux**: Use bash. Define ANSI codes with `$'...'` syntax: `GREEN=$'\033[32m'`
+- **macOS/Linux**: Use bash with the ANSI definitions above
+- **Windows**: Use PowerShell 7+ (`pwsh`). Use backtick syntax instead: `` $Green = "`e[32m" ``
 
 Install to `~/.claude/` and update `~/.claude/settings.json` with the statusLine configuration.
