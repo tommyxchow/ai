@@ -38,9 +38,11 @@ Opus │ ↑15k ↓4k $1.23 │ 5m (2m) +156 -23 │ 42%
 
 ## Formatting Rules
 
-**Duration**: Show as `Xs` or `Xm` — total time followed by API time in parentheses
+**Duration**: Show as `Xs`, `Xm`, or `Xh Ym` — total time followed by API time in parentheses (always shown)
 
-- Example: `5m (2m)` = 5 min total, 2 min waiting for API
+- `5m (2m)` = 5 min total, 2 min waiting for API
+- `1h 15m (45m)` = 1 hour 15 min total, 45 min waiting for API
+- Empty state: `0s (0s)`
 
 **Tokens**:
 
@@ -50,8 +52,8 @@ Opus │ ↑15k ↓4k $1.23 │ 5m (2m) +156 -23 │ 42%
 
 **Cost**:
 
-- 4 decimal places if < $0.10 → `$0.0123`
-- 2 decimal places if ≥ $0.10 → `$1.23`
+- 4 decimal places if < $0.01 → `$0.0012`
+- 2 decimal places if ≥ $0.01 → `$0.12`
 
 **Lines changed**:
 
@@ -75,7 +77,15 @@ Auto-compact triggers at ~78%, so thresholds are calibrated accordingly:
 
 ## Null Handling
 
-Show `--` for any missing/null field. Default to `0` for lines added/removed and context percentage if null.
+Default to `0` for numeric fields when null/missing:
+
+- Tokens: `0`
+- Cost: `$0.0000`
+- Duration: `0s (0s)`
+- Lines: `+0` / `-0`
+- Context: `0%`
+
+Only show `--` for non-numeric fields like model name if truly unavailable.
 
 ## Platform Notes
 
