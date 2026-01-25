@@ -57,6 +57,8 @@ Opus │ ↑15k ↓4k $1.23 │ 5m (2m) +156 -23 │ 42%
 
 **Lines changed**: Green for `+added`, Red for `-removed`
 
+**Model name**: Reset/default terminal color (wrap with `${RESET}`)
+
 **Separators**: Dim box-drawing character `│` (U+2502)
 
 **General styling**: Duration, tokens, and cost should be dim
@@ -74,14 +76,15 @@ Auto-compact triggers at ~78%, so thresholds are calibrated accordingly:
 
 ## ANSI Color Definitions (Bash)
 
-Define colors using `$'...'` syntax so escape sequences are interpreted:
+Define colors using `$'...'` syntax so escape sequences are interpreted.
+Use 24-bit true color format `\033[38;2;R;G;Bm` for precise colors:
 
 ```bash
-DIM=$'\033[90m'
-GREEN=$'\033[32m'
+DIM=$'\033[38;2;153;153;153m'      # #999999
+GREEN=$'\033[38;2;55;166;96m'      # #37A660
 YELLOW=$'\033[33m'
 ORANGE=$'\033[38;5;208m'
-RED=$'\033[31m'
+RED=$'\033[38;2;187;106;122m'      # #BB6A7A
 RESET=$'\033[0m'
 ```
 
@@ -102,6 +105,15 @@ Only show `--` for non-numeric fields like model name if truly unavailable.
 ## Platform Notes
 
 - **macOS/Linux**: Use bash with the ANSI definitions above
-- **Windows**: Use PowerShell 7+ (`pwsh`). Use backtick syntax instead: `` $Green = "`e[32m" ``
+- **Windows**: Use PowerShell 7+ (`pwsh`). Use backtick syntax instead:
+
+```powershell
+$Dim = "`e[38;2;153;153;153m"      # #999999
+$Green = "`e[38;2;55;166;96m"      # #37A660
+$Yellow = "`e[33m"
+$Orange = "`e[38;5;208m"
+$Red = "`e[38;2;187;106;122m"      # #BB6A7A
+$Reset = "`e[0m"
+```
 
 Install to `~/.claude/` and update `~/.claude/settings.json` with the statusLine configuration.
