@@ -1,5 +1,4 @@
-I'm on Windows 11 using powershell 7 and VSCode.
-Use pnpm, not npm.
+IDE: VSCode. Use pnpm, not npm.
 
 # Author Preferences
 
@@ -10,17 +9,27 @@ Use pnpm, not npm.
 - When implementing new code, search the codebase for existing usages and follow established patterns.
 - When new code supersedes existing functionality, find and remove everything it makes redundant.
 - When asked to "verify", always use web search to check current documentation and sources before responding. Do not rely solely on training data.
+- Default to searching for factual questions, technical details, framework/library APIs, and version-specific behavior. Only skip search if the answer is absolutely foundational and unchanging.
 
 ## Code Opinions
 
-- Named exports only — no default exports except where required by Next.js (page, layout, route, etc.)
-- `satisfies` over `as` for type validation
 - `UPPER_SNAKE_CASE` for constants
 - Derive state where possible — avoid duplicating what can be computed
-- Avoid `useRef` unless DOM access or imperative work
 - Inline until a pattern repeats 3+ times, then extract
-- Extract related/grouped logic (state, effects, handlers) into dedicated custom hooks when it improves readability — keep components focused on rendering
 - For new components/hooks/APIs: include a usage example
+
+### TypeScript
+
+- Named exports only — no default exports except where required by Next.js (page, layout, route, etc.)
+- `satisfies` over `as` for type validation
+- `??` over `||`; explicit null checks over loose truthiness
+- Avoid enums — use `as const` objects or union types
+
+### React
+
+- State progression: useState → Context → Zustand as needed
+- Avoid `useRef` unless DOM access or imperative work
+- Extract related/grouped logic (state, effects, handlers) into dedicated custom hooks when it improves readability — keep components focused on rendering
 
 ## Quality Priorities
 
@@ -39,8 +48,8 @@ Not priorities: WCAG compliance (easy wins only), public accessibility, SEO, pro
 
 ## UI Patterns
 
-- When UI visibility depends on an async query (modals, banners, gates), default to hidden and only show after loading completes — never let `defaultValue` flash the UI while the query is in flight.
 - Adapt external designs (Figma specs, reference implementations) to codebase conventions before implementing. External descriptions may contain AI-generated rough drafts — always cross-reference against actual codebase patterns.
+- (React) When UI visibility depends on an async query (modals, banners, gates), default to hidden and only show after loading completes — never let `defaultValue` flash the UI while the query is in flight.
 
 ## Infrastructure Checklist
 
