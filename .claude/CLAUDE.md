@@ -10,6 +10,7 @@ IDE: VSCode. Use pnpm, not npm.
 - When new code supersedes existing functionality, find and remove everything it makes redundant.
 - When asked to "verify", always use web search to check current documentation and sources before responding. Do not rely solely on training data.
 - Default to searching for factual questions, technical details, framework/library APIs, and version-specific behavior. Only skip search if the answer is absolutely foundational and unchanging.
+- Favor parallel tool calls and subagents when tasks are independent.
 
 ## Code Opinions
 
@@ -60,6 +61,7 @@ When creating new infrastructure (routes, API handlers, providers), use explorat
 - Label severity: `critical` / `major` / `minor`
 - Prefer minimal, tightly scoped diffs — don't switch layout strategies (e.g., grid to flex) unless explicitly asked, as it often breaks dependent sizing
 - Flag unnecessary complexity with a simpler alternative
+- Flag security issues (XSS, CSRF, injection, auth gaps) with fixes
 
 ## Testing
 
